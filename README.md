@@ -1,5 +1,6 @@
 
 
+
 #  Introduction
 **HTTP** is a [protocol](https://developer.mozilla.org/en-US/docs/Glossary/Protocol) for fetching resources such as HTML documents. It is the foundation of any data exchange on the Web and it is a client-server protocol, which means requests are initiated by the recipient, usually the Web browser. A complete document is reconstructed from the different sub-documents fetched, for instance, text, layout description, images, videos, scripts, and more.
 
@@ -185,7 +186,6 @@ A specific document is called a _resource_. When a client wants to obtain a reso
 
 ![enter image description here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation/httpnego.png)
 
-
 HTTP provides for several different content negotiation mechanisms including:
 
  - Server-driven
@@ -197,15 +197,21 @@ HTTP provides for several different content negotiation mechanisms including:
 In _server-driven content negotiation_, or proactive content negotiation, the browser (or any other kind of user agent) sends several HTTP headers along with the URL. These headers describe the user's preferred choice. The server uses them as hints and an internal algorithm chooses the best content to serve to the client.
 
 
-![enter image description here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation/httpnegoserver.png)
-
-
 **Example Negotiation Headers**
 
  - **Accept**: Which media types are acceptable for the response, such as “application/json,” “application/xml”.
  - **Accept-Charset**: Which character sets are acceptable, such as UTF-8 or ISO 8859-1.
  - **Accept-Encoding**: Which content encodings are acceptable, such as gzip.
  - **Accept-Language**: The preferred natural language, such as "en-us."
+
+
+
+
+![enter image description here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation/httpnegoserver.png)
+
+
+
+
 
 
 
@@ -245,18 +251,8 @@ MIME passes as a part of the content type of the message header.
 
 ![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/11.PNG)
 
-## Encoding (MIME)
-Binary files need to be “packaged” as text in order to be sent over the internet. MIME uses a BASE-64 binary encoding scheme to package the data for transfer. Because of this encoding, standard SMTP (Simple Mail Transfer Protocol), servers did not require any changes. Encoding transforms binary data into a string. Decoding changes the data back into its original form.
-
-**Base 64 encoding Example (MIME)**
-
- - Normal Text:
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/14.PNG)
- - Encoded Text:
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/15.PNG)
-
 ## Sending large Messages (MIME)
-When sending large messages, the message client splits them into smaller parts. This type of message is called a multi-part message. Multi-part messages have one of the MIME content types such as **content-type = multipart/related and content-type = multipart/mixed**
+When sending large messages, the message client splits them into smaller parts. This type of message is called a multi-part message. Multi-part messages have one of the MIME content types such as **content-type = form-data
 
 # HTTP Caching
 Web pages often contain content that remains unchanged for long periods. For example, an image containing a company logo may be used without modification for many years. It is wasteful in terms of bandwidth and round trips to repeatedly download images or other content that is not regularly updated.
@@ -345,34 +341,12 @@ REST stands for Representational State Transfer. (It is sometimes spelled “ReS
 
 ![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/26.PNG)
 
-# REST HTTP Verbs
-
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/27.PNG)
-
-
-## GET
-
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/28.PNG)
-
-## POST
-
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/29.PNG)
-
-## PUT
-
-
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/30.PNG)
-
-## DELETE
-
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/31.PNG)
-
 # WebSocket
 WebSocket is a computer communications protocol, providing full-duplex communication channels over a single TCP connection. The WebSocket protocol was standardized by the IETF as RFC 6455 in 2011, and the WebSocket API in Web IDL is being standardized by the W3C. WebSocket is a different TCP protocol from HTTP.
 
 ![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/32.PNG)
 
-# Protocol handshake
+## Protocol handshake
 To establish a WebSocket connection, the client sends a WebSocket handshake request, for which the server returns a WebSocket handshake response, as shown in the example below. 
 **Client request** (just like in HTTP, each line ends with \r\n and there must be an extra blank line at the end)
 
@@ -389,27 +363,8 @@ Web app developers can implement a technique called HTTP long polling, where the
 
 # Web DAV
 
-Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hypertext Transfer Protocol (HTTP) that allows clients to perform remote Web content authoring operations.
 
-HTTP/1.1 still essentially a read-only protocol, as deployed
- -  Web Distributed Authoring and Versioning – HTTP extension
- -  The most recent version from 1999 – RFC2518
- 
-**Extra methods:**
- - PROPFIND – retrieve resource metadata
- - PROPPATCH – change/delete resource metadata
- - MKCOL – create a collection (directory)
- - COPY – copy resource
- - MOVE – move the resource
- - LOCK/UNLOCK – lock/release resource (so that others cannot change it)
+WebDAV stands for Web Distributed Authoring and Versioning, which is an extension to HTTP that lets clients edit remote content on the web. In essence, WebDAV enables a web server to act as a file server, allowing authors to collaborate on web content.
 
+WebDAV enriches the standard set of HTTP headers and methods to let you create, move and edit files, as well as delete or copy files and folders. As an extension to HTTP, Web Distributed Authoring and Versioning usually uses port 80 for plain, unencrypted access and port 443 if you use the [SSL/TLS](https://www.cloudwards.net/ssl-vs-tls/) protocol.
 
-# JWT (JSON Web Token) – SSO
-JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the **HMAC** algorithm) or a public/private key pair using **RSA**.
-
-JSON Web Tokens consist of three parts separated by dots (.), which includes Header, Payload, and Signature. Therefore, a JWT typically looks like the following. **xxxxx.yyyyy.zzzzz**
-
-
-![enter image description here](https://raw.githubusercontent.com/gitmag-group-admin/http_protocol/main/36.PNG)
-
-# What is QUIC
